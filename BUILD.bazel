@@ -1,0 +1,37 @@
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+
+pkg_tar(
+    name = "layer",
+    srcs = [],
+)
+
+oci_image(
+    name = "image",
+    architecture = "amd64",
+    base = "@distroless_base",
+    os = "linux",
+    tars = [":layer"],
+)
+
+oci_tarball(
+    name = "tar",
+    image = ":image",
+    repotags = ["foobar:latest"],
+    visibility = ["//visibility:public"],
+)
+
+oci_image(
+    name = "java_image",
+    architecture = "amd64",
+    base = "@distroless_java",
+    os = "linux",
+    tars = [":layer"],
+)
+
+oci_tarball(
+    name = "java_tar",
+    image = ":java_image",
+    repotags = ["foobar_java:latest"],
+    visibility = ["//visibility:public"],
+)
