@@ -37,7 +37,7 @@ oci_pull(
 # A multi-arch base image
 oci_pull(
     name = "distroless_base",
-    digest = "sha256:ccaef5ee2f1850270d453fdf700a5392534f8d1a8ca2acda391fbb6a06b81c86",
+    digest = "sha256:e711a716d8b7fe9c4f7bbf1477e8e6b451619fcae0bc94fdf6109d490bf6cea0",
     image = "gcr.io/distroless/base",
     platforms = [
         "linux/amd64",
